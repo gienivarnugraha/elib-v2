@@ -1,0 +1,120 @@
+[v-cloak] {
+  display: none !important;
+}
+
+.a-select-options-container {
+  @apply z-10 max-h-36 overflow-y-auto;
+}
+
+.v-separator {
+  @apply hidden h-full border-l border-neutral-200 dark:border-neutral-600 md:block
+}
+
+.h-separator {
+  @apply hidden w-full border-t border-neutral-200 dark:border-neutral-600 md:block
+}
+
+::-webkit-scrollbar {
+  width: 0.25em;
+  height: 0.25em;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px hsla(var(--a-primary));
+  background-color: hsla(var(--a-surface-c));
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsla(var(--a-primary));
+  outline: hsla(var(--a-surface-c));
+}
+
+.slide-y-enter-active {
+  transition: all 0.5s ease-out;
+}
+
+.slide-y-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-y-enter-from,
+.slide-y-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+.slide-x-enter-active {
+  transition: all 0.5s ease-out;
+}
+
+.slide-x-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-x-enter-from {
+  transform: translateX(0);
+}
+
+.slide-x-leave-to {
+  transform: translateX(-20px);
+}
+
+/* ACTIVE TRANSITION */
+.fade-enter-active,
+.slide-over-enter-active {
+  @apply transition ease-in-out duration-600
+}
+
+/* LEAVE TRANSITION */
+.fade-leave-active,
+.slide-over-leave-active {
+  @apply transition ease-in-out duration-100
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  @apply opacity-0;
+}
+
+
+.slide-over-enter-to,
+.slide-over-leave-from {
+  @apply translate-x-0
+}
+
+.slide-over-enter-from,
+.slide-over-leave-to {
+  @apply translate-x-full
+}
+
+#table>div:not(div.a-loader) {
+  @apply relative max-h-96;
+}
+
+table.a-table-table>thead>tr>th {
+  @apply z-10 sticky top-0;
+}
+
+table.a-table-table>thead>tr>th,
+table.a-table-table>tbody>tr>.table-sticky-column,
+table.a-table-table>tfoot>tr>.table-sticky-column {
+  @apply bg-[color:hsla(var(--a-surface-c))];
+}
+
+table.a-table-table>tbody>tr>.table-sticky-column,
+table.a-table-table>tfoot>tr>.table-sticky-column {
+  @apply position-initial md:sticky md:left-0;
+}
+
+table.a-table-table>thead>tr>.table-sticky-column {
+  @apply md:sticky sm:left-0;
+}
+
+table.a-table-table>thead>tr>.table-sticky-column {
+  @apply z-20;
+}
+
+table.a-table-table>tbody>tr>.table-sticky-column,
+table.a-table-table>tfoot>tr>.table-sticky-column {
+  @apply z-10;
+}

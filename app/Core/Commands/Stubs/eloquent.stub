@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Eloquent;
+
+use App\Models\$CLASS$;
+use App\Core\Repository\AppRepository;
+use App\Contracts\Repositories\$CLASS$Repository;
+
+class $CLASS$Eloquent extends AppRepository implements $CLASS$Repository
+{
+    /**
+     * Searchable fields
+     *
+     * @var array
+     */
+    protected static $fieldSearchable = [
+
+    ];
+
+    /**
+     * Specify Model class name
+     *
+     * @return string
+     */
+    public static function model()
+    {
+        return $CLASS$::class;
+    }
+
+      /**
+   * Boot the repository
+   *
+   * @return void
+   */
+  public static function boot()
+  {
+
+  }
+
+    /**
+     * The relations that are required for the response
+     *
+     * @return array
+     */
+    protected function eagerLoad()
+    {
+        return [
+
+        ];
+    }
+}

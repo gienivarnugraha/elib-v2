@@ -1,0 +1,90 @@
+<?php
+
+namespace Tests\Feature\Resources\Test;
+
+use Tests\Feature\Resources\ResourceTestCase;
+
+class $CLASS$ResourceTest extends ResourceTestCase
+{
+  protected $resourceName = '$VAR$';
+
+  public $defaultData = [
+
+  ];
+
+  public $expectedJson = [
+
+  ];
+
+ 
+  public function test_table_order_by()
+  {
+    $this->factory()->count(100)->create();
+    $this->performTestTableOrderBy('order=name|asc&per_page=100', function ($model) {
+        return [
+        ];
+    });
+  }
+
+  public function test_table_search()
+  {
+    $model = $this->factory()->count(1000)->create();
+    $result = $this->performTestTableSearch('q='.substr($model[0]->name, 1, -1));
+    $this->assertSame($model[0]->name, $result[0]->name);
+  }
+
+
+  public function test_unauthenticated_user_cannot_access_resource_ednpoints()
+  {
+    $this->testUnauthenticatedUserCannotAccessResourceEdnpoints();
+  }
+
+  public function test_table_can_load_with_all_fields()
+  {
+    $this->performTestTableRequestWithAllFields();
+  }
+  
+  public function test_resource_update()
+  {
+    $result = $this->performTestUpdateResource($this->data());
+    
+  }
+
+  public function test_resource_create()
+  {
+    $result = $this->performTestCreateResource($this->data());
+  }
+
+  public function test_resource_delete()
+  {
+    $factory = $this->factory(5)->create();
+    $this->performTestDeleteResource($factory);
+  }
+
+  public function test_request_update()
+  {
+    $factory = $this->factory()->create();
+
+    $result = $this->performTestUpdateRequest($factory, $this->data())
+      ->assertJsonStructure($this->expectedJson);
+  }
+
+  public function test_request_create()
+  {
+    $result = $this->performTestCreateRequest($this->data())
+      ->assertJsonStructure($this->expectedJson);
+  }
+
+  public function test_request_delete()
+  {
+    $factory = $this->factory()->create();
+    $this->performTestDeleteRequest($factory);
+  }
+
+  /* OPTIONAL TEST */
+  
+  public function test_regular_admin_policy()
+  {
+    $this->regularAdminPolicy($this->data());
+  }
+}

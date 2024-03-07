@@ -1,0 +1,48 @@
+<?php
+
+namespace App\Core\Providers;
+
+use App\Core\Facades\Menu;
+use App\Core\Facades\Application;
+use App\Core\Providers\CoreServiceProvider as BaseCoreServiceProvider;
+use App\Core\Application\Menu\Item as MenuItem;
+
+class CoreServiceProvider extends BaseCoreServiceProvider
+{
+  /**
+   * Register the application repositories
+   *
+   * @return void
+   */
+  protected function registerAppRepositories()
+  {
+    $this->app->bind(
+      \App\Contracts\Repositories\UserRepository::class,
+      \App\Eloquent\UserEloquent::class
+    );
+
+    $this->app->bind(
+      \App\Contracts\Repositories\SettingRepository::class,
+      \App\Eloquent\SettingEloquent::class
+    );
+  }
+
+  /**
+   * Register the menu items that should be displayed on the sidebar
+   *
+   * @return void
+   */
+  protected function registerCoreMenuItems()
+  {
+    Application::booting(function () {
+      Menu::register([
+        MenuItem::make('dashboard', '/dashboard', 'bx-chart')->position(5),
+        MenuItem::make('profile', '/profile', 'bx-user')->position(15)->badge(10),
+      ]);
+
+      Menu::register(MenuItem::make('settings', '/settings', 'bx-cog')
+        ->canSeeWhen('super-admin')
+        ->position(100));
+    });
+  }
+}
